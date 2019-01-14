@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>实名认证</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/leaflets.css" />
+		<style>
+			body{
+				line-height: initial;
+			}
+			.birth span{
+				float: left;
+			}
+			input{
+				font-size: 14px;
+				padding-left: 0!important;
+			}
+			button:enabled:active {
+				background: rgba(250, 250, 250, 0.2);
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #555555;"></a>
+			<h1 class="mui-title">实名认证</h1>
+		</header>
+		<div class="mui-content">
+			<div class="personal-data">
+				<div class="birth">
+					<span>姓名：</span>
+					<input type="text" placeholder="请输入姓名"></input>
+				</div>
+				<div class="birth">
+					<span>职称：</span>
+					<input type="text" placeholder="请输入职称"></input>
+				</div>
+				<div class="birth">
+					<span class="FL">服务范围：</span>
+					<input type="text" placeholder="请输入服务范围"></input>
+				</div>
+				<div class="birth">
+					<span class="FL">店铺名称：</span>
+					<input type="text" placeholder="请输入店铺名称"></input>
+				</div>
+				<div class="birth">
+					<span class="FL">个人介绍：</span>
+					<input type="text" placeholder="请输入个人介绍"></input>
+				</div>
+				<div class="examination">
+					<span>认证信息：上传身份证明和职称证明</span>
+					<ul class="mui-content-padded" id="examination">
+						<li>
+							<img src="../imgs/picture.png" data-preview-src="" data-preview-group="1" />
+						</li>
+						<li>
+							<img src="../imgs/picture.png" data-preview-src="" data-preview-group="1" />
+						</li>
+						<li>
+							<img src="../imgs/picture.png" data-preview-src="" data-preview-group="1" />
+						</li>
+					</ul>
+				</div>
+				<div class="logobtn" style="padding: 20px;">
+					<button id="queren">确认</button>
+				</div>
+			</div>
+		</div>
+		<input class="hide" type="file" name="" id="file2" onchange="examination(event,false)" style="display: none;" />
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/zepto.min.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			$("#queren")[0].addEventListener("tap",function(){
+				window.location.href='index.html';
+			});
+				//触发上传
+			var nuber;
+			$("#examination").on("click", "img", function() {
+				$("#file2").click();
+				var index = $(this);
+				nuber = index;
+			});
+			var examination = function(event) {
+				var files = event.target.files,
+					file;
+				if(files && examination.length > 0) {
+					// 获取目前上传的文件
+					file = files[0]; // 文件大小校验的动作
+					if(file.size > 1024 * 1024 * 2) {
+						alert('图片大小不能超过 2MB!');
+						return false;
+					}
+					// 获取 window 的 URL 工具
+					var URL = window.URL || window.webkitURL;
+					// 通过 file 生成目标 url
+					var imgURL = URL.createObjectURL(file);
+					console.log(imgURL);
+					//用attr将img的src属性改成获得的url
+					$(nuber).attr("src", imgURL);
+					// 使用下面这句可以在内存中释放对此 url 的伺服，跑了之后那个 URL 就无效了
+					//URL.revokeObjectURL(imgURL);
+				}
+			};
+		</script>
+	</body>
+
+</html>

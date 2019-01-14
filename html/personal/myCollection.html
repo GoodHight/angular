@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人中心</title>
+		<script type="text/javascript" src="../../js/mui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/personal.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:#fff">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #555;"></a>
+			<h1 class="mui-title" style="color: #555;">我的收藏</h1>
+			<a id="z_editor" class="mui-icon mui-pull-right" style="color: #00BE9E;font-size:0.9rem;margin-top: 5px;">编辑</a>
+		</header>
+		<div class="mui-content">
+			<div class="notice-box">
+				<ul class="notice-ul">
+					<li>
+						<div class="notice-user-img">
+							<img src="../../imgs/toux.png"/>
+						</div>
+						<div class="notice-user-info">
+							<p>平台头条君<a>11:25</a></p>
+							<span>消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容</span>
+						</div>
+						<div class="select-icon">
+							<img src="../../imgs/uncheck.png"/>
+						</div>
+					</li>
+					<li>
+						<div class="notice-user-img">
+							<img src="../../imgs/toux.png"/>
+						</div>
+						<div class="notice-user-info">
+							<p>平台头条君<a>11:25</a></p>
+							<span>消息内容</span>
+						</div>
+						<div class="select-icon">
+							<img src="../../imgs/uncheck.png"/>
+						</div>
+					</li>
+					<li>
+						<div class="notice-user-img">
+							<img src="../../imgs/toux.png"/>
+						</div>
+						<div class="notice-user-info">
+							<p>平台头条君<a>11:25</a></p>
+							<span>消息内容</span>
+						</div>
+						<div class="select-icon">
+							<img src="../../imgs/uncheck.png"/>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../../js/app/common.js"></script>
+		<script type="text/javascript" src="../../js/app/app.js"></script>
+		<script type="text/javascript" src="../../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			$(".notice-user-img").css("height", $(".notice-user-img").width() + "px");
+			$("#z_editor")[0].addEventListener("tap", function() {
+				$(".select-icon").children("img").show()
+				$(this).text("删除");
+			});
+			$(".select-icon").on("tap", function() {
+				var src = $(this).children("img").attr("src");
+				if(src == "../../imgs/Theselected.png") {
+					$(this).children("img").attr("src", "../../imgs/uncheck.png");
+				} else {
+					$(this).children("img").attr("src", "../../imgs/Theselected.png");
+				};
+			});
+		</script>
+
+	</body>
+
+</html>

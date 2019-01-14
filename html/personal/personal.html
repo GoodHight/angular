@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人中心</title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/personal.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+			.mui-bar-tab {
+				height: 60px!important;
+			}
+			
+			.mui-barz {
+				height: auto;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn).mui-active {
+				background: #fff;
+			}
+			
+			[v-cloak] {
+				display: none;
+			}
+			
+			.mui-table-view li {
+				width: 100%;
+			}
+			
+			.mui-switch.mui-active:before {
+				content: '在线'!important;
+			}
+			
+			.mui-switch:before {
+				content: '离线'!important;
+			}
+			
+			.zaixian {
+				margin: 4px 0;
+				background: #FFFFFF;
+				border-bottom: 1px solid #e2e2e2;
+				border-top: 1px solid #e2e2e2;
+				overflow: auto;
+				padding: 13px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item " href="../index.html">
+				<span class="mui-icon"><img src="../../imgs/homepage1.png"/></span>
+				<span class="mui-tab-label p3">首页</span>
+			</a>
+			<a class="mui-tab-item " href="../leaflets.html">
+				<span class="mui-icon "><img src="../../imgs/sendasingle.png"/></span>
+				<span class="mui-tab-label">我的派单</span>
+			</a>
+			<a class="mui-tab-item " href="../problem/problem.html">
+				<span class="mui-icon "><img src="../../imgs/theproblem.png"/></span>
+				<span class="mui-tab-label">问题疑答</span>
+			</a>
+			<a class="mui-tab-item mui-active" href="#">
+				<span class="mui-icon "><img src="../../imgs/04.png"/></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+		</nav>
+		<div id="personalvue" style="padding-bottom: 60px;">
+				<div class="portrait">
+					<template v-if="artificer != '' ">
+						<template v-if="artificer != null ">
+							<div class="header">个人中心</div>
+							<a href="modify.html"><img :src="artificer.head_url" /></a>
+							<p>—— {{artificer.name}} ——</p>
+						</template>
+					</template>
+				</div>
+				<ul class="mui-row">
+					<li onclick="location='water.html'" class="mui-col-xs-4 mui-col-sm-4">
+						<div class="" style="width: 35px;height: 35px;margin: 0 auto;">
+							<img src="../../imgs/rmb1.png" />
+						</div>
+						<span>流水</span>
+						<div class="right-border"></div>
+					</li>
+					<li onclick="app.blocaked()" class="mui-col-xs-4 mui-col-sm-4">
+						<!--onclick="location='notice.html'"-->
+						<div class="" style="width: 35px;height: 35px;margin: 0 auto;">
+							<img src="../../imgs/notice.png" />
+						</div>
+						<span>通知中心</span>
+						<div class="right-border"></div>
+					</li>
+					<li onclick="app.blocaked()" class="mui-col-xs-4 mui-col-sm-4">
+						<div class="" style="width: 35px;height: 35px;margin: 0 auto;">
+							<img src="../../imgs/collection1.png" />
+						</div>
+						<span>我的收藏</span>
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="zaixian">
+						<span style="position: relative;top:5px;">选择在线状态</span>
+						<template v-if="artificer != null ">
+							<div @click="getState(event)" id="mySwitch" :class="artificer.is_online?'mui-switch mui-active':'mui-switch'" style="float: right;">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</template>
+					</li>
+					<li v-if="audit != 'PASS_THROUGH'" class="mui-table-view-cell" @click="againBtn(event)">
+						认证审核状态：{{audit|auditStatusFilter}}<span style="color:#4cd964 ;float: right;">重新绑定商家</span>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="about.html"><img src="../../imgs/book.png" />关于平台</a>
+					</li>
+					<li onclick="app.blocaked()" class="mui-table-view-cell">
+						<div class="mui-navigate-right"><img src="../../imgs/share.png" />分享</div>
+					</li>
+					<li class="mui-table-view-cell" @click="SignOut()">
+						<img src="../../imgs/exit.png" />退出登录
+					</li>
+					<div class="clear"></div>
+				</ul>
+		</div>
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../../js/app/common.js"></script>
+		<script type="text/javascript" src="../../js/app/app.js"></script>
+		<script type="text/javascript" src="../../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../../js/app/html/personal.js"></script>
+		<script type="text/javascript" src="../../js/app/regex.js"></script>
+		<script>
+			//			mui('.mui-switch')['switch']();
+			//			mui("#mySwitch").switch().toggle();
+			//			document.getElementById("mySwitch").addEventListener("toggle", function(event) {
+			//				if(event.detail.isActive) {
+			//					console.log("你启动了开关");
+			//				} else {
+			//					console.log("你关闭了开关");
+			//				}
+			//			})
+		</script>
+	</body>
+
+</html>

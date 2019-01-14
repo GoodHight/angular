@@ -1,0 +1,269 @@
+.header {
+	padding-top: 6px;
+	width: 100%;
+	background: #FFFFFF;
+	text-align: center;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #E2E2E2;
+	position: fixed;
+	top: 0;
+	z-index: 99;
+}
+
+.header input {
+	position: relative;
+	width: 80%;
+	margin: 0 auto!important;
+	background: #f7f7f7;
+	border: none;
+	border-radius: 7px;
+	text-align: center;
+}
+
+.header .border-right {
+	position: absolute;
+	top: 12px;
+	right: 86px;
+	height: 26px;
+	border-left: 1px solid #E2E2E2;
+}
+
+.header button {
+	position: absolute;
+	top: 19px;
+	right: 46px;
+	width: 20px;
+	height: 24px;
+	border: none;
+	background: url(../imgs/search1.png) no-repeat;
+	background-size: 70% 70%;
+}
+
+.navigation {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 5px;
+	position: fixed;
+	top: 54px;
+	left: 0;
+	z-index: 50;
+}
+
+.navigation ul {
+	width: auto;
+	background: #FFFFFF;
+	white-space: nowrap;
+	overflow: auto;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+.navigation li {
+	font-size: 15px;
+	text-align: center;
+	/*width:70px;*/
+	display: inline-block;
+	padding: 12px 8px 8px;
+	/*float: left;*/
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.content {
+	margin-top: 100px;
+	background: #FFFFFF;
+	padding: 5px 10px 60px;
+}
+
+.content>ul>li {
+	padding-top: 10px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+.user-name {
+	line-height: 1.5;
+}
+
+.user-name span {
+	color: #333333;
+	font-size: 16px;
+}
+
+.user-name .user-img {
+	width: 46px;
+	height: 46px;
+	float: left;
+	margin-right: 6px;
+}
+
+.user-name .user-img img {
+	width: 100%;
+	border-radius: 23px;
+}
+
+.user-name small {
+	color: #999999;
+}
+
+.user-name .FR {
+	margin-top: -11px;
+	font-size: 12px;
+	padding: 2px 6px;
+	color: #00BE9E;
+	border: 1px solid #00BE9E;
+	border-radius: 5px;
+}
+
+.question {
+	padding: 3px 18px 3px 20px;
+}
+
+.user-name p {
+	padding-left: 5px;
+	margin: 16px 0 8px;
+	font-size: 14px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+
+.question small {
+	font-size: 70%!important;
+	color: #bbb2b2!important;
+}
+
+.question span {
+	float: right;
+	color: #bbb2b2!important;
+}
+
+.question img {
+	width: 15px;
+	margin-right: 5px;
+	float: right;
+	position: relative;
+	top: 2px;
+}
+
+.mui-collapse-content textarea {
+	width: 100%;
+	border: 1px solid #e2e2e2;
+	margin: 0;
+}
+
+.mui-collapse-content a {
+	border: 1px solid #00BE9E;
+	color: #00BE9E!important;
+	border-radius: 10px;	
+	padding: 0px 8px;
+	float: right;
+	font-size: 12px;
+    margin-top: 8px;
+}
+
+
+/*
+.contenter{
+	margin-top: 48px;
+}*/
+
+.questions-to {
+	border: 1px solid #E2E2E2;
+	margin: 4px 0;
+	border-radius: 16px;
+	background: #FFFFFF;
+	padding: 20px 10px;
+}
+
+.questions-me-top {
+	margin: 5px 0;
+	padding: 0 3px 5px;
+}
+
+.border-top {
+	border-top: 1px solid #e2e2e2;
+	padding-top: 15px;
+}
+
+.questions-me-top img {
+	width: 10px;
+	margin: 0 5px 0 2px;
+}
+
+.questions-me-top small {
+	font-size: 50%!important;
+	color: #999999;
+	float: right;
+}
+
+.mui-collapse-content .zan {
+	font-size: 50%;
+	color: #999999;
+}
+
+.questions-me p {
+	margin: 0;
+	padding-left: 66px!important;
+}
+
+.questions-me {
+	/*padding-bottom: 20px;*/
+	/*border-bottom: 1px solid #E2E2E2;*/
+}
+
+.mui-table-view {
+	/*position: initial;*/
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	background: #FFFFFF!important;
+}
+
+.mui-table-view-cell>a:not(.mui-btn).mui-active {
+	background: #FFFFFF!important;
+}
+
+.mui-table-view-cell {
+	padding: 11px 0;
+}
+
+.question-img {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	overflow: hidden;
+	float: left;
+}
+
+.question-img img {
+	width: 100%;
+}
+
+..mui-table-view-cell.mui-active {
+	background: #fff;
+}
+
+.mui-table-view-cell.mui-active {
+	background: #fff!important;
+}
+
+.mui-table-view:before {
+	background: #fff!important;
+}
+
+.mui-table-view:after {
+	background: #fff!important;
+}
+
+.navigation {
+	background: #fff;
+	position: fixed!important;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	color: #00BE9E;
+	border-bottom: 2px solid #00BE9E;
+}

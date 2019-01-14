@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/merchants-style.css" />
+		<style>
+			.apptype {
+				color: #fff;
+			}
+			
+			html,
+			body {
+				height: 100%!important;
+				/*background: -webkit-linear-gradient(red, blue);
+				background: -o-linear-gradient(red, blue);
+				background: -moz-linear-gradient(red, blue);*/
+				background: linear-gradient(#0bbca1, #0cd69a);
+			}
+			
+			.mui-content {
+				background: none;
+			}
+			
+			.logobtn {
+				width: 80%;
+				margin: 0 auto;
+				margin-bottom: 8px!important;
+				overflow: hidden;
+			}
+			
+			.logobtn button {
+				background: rgba(250, 250, 250, 0.3);
+				padding: 0;
+				height: 44px!important;
+				border-radius: 20px;
+			}
+			
+			.logobtn button:hover {
+				background: rgba(250, 250, 250, 0.2);
+			}
+			
+			button:enabled:active {
+				background: rgba(250, 250, 250, 0.2);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="logo-box">
+				<img src="../imgs/logo.png" /><br />
+				<img src="../imgs/yyyh.png" />
+				<p class="apptype">技师版</p>
+			</div>
+			<div class="logobtn">
+				<button id="zaizhi">在职技师</button>
+			</div>
+			<div class="logobtn">
+				<button id="jianzhi">兼职技师</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui('body').on('tap', 'a', function() {
+				document.location.href = this.href;
+			});
+			$("#zaizhi")[0].addEventListener("tap", function() {
+				window.location.href = 'authentication.html?type=A';
+			});
+			$("#jianzhi")[0].addEventListener("tap", function() {
+				window.location.href = 'authentication.html?type=B';
+			});
+		</script>
+	</body>
+
+</html>

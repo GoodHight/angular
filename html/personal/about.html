@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<head>
+		<meta charset="UTF-8">
+		<title>关于平台</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/personal.css" />
+		<style>
+			.mui-icon-back:before, .mui-icon-left-nav:before{
+				color: #555555;
+			}
+		</style>
+	</head>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #019eff;"></a>
+			<h1 class="mui-title">关于平台</h1>
+		</header>
+		<div class="about-logo">
+			<img src="../../imgs/logo2.png"/>
+			<br />
+			<span>益养延和技师版   V0.0.01</span>
+		</div>
+		<ul class="about-jiesao" id="about">
+			<li>
+				<span>公司介绍</span>
+				<p>{{findPlatform.goods_introduce}}</p>
+			</li>
+			<li>
+				<span>平台介绍</span>
+				<p>{{findPlatform.company_introduce}}</p>
+			</li>
+			<li style="border-bottom: none;">
+				<span>客服电话</span>
+				<p>{{findPlatform.service_telephone}}</p>
+			</li>
+		</ul>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../../js/app/common.js"></script>
+		<script type="text/javascript" src="../../js/app/app.js"></script>
+		<script type="text/javascript" src="../../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../../js/app/html/about.js"></script>
+	</body>
+</html>

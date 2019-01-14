@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>头条详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<script src="../js/mui.min.js"></script>
+		<style>
+			a:hover {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #019eff;"></a>
+			<h1 class="mui-title">头条详情</h1>
+		</header>
+		<div class="clear"></div>
+		<div class="content" id="detailsvue">
+			<div class="quan-data">
+				<div class="id-img">
+					<img src="../imgs/headportrait.png" />
+				</div>
+				<div class="user-id">
+					<span class="wser-name">平台头条君</span>
+					<br />
+					<span class="user-time">{{details.created_time}}</span>
+				</div>
+				<span class="zt FR">{{details.name}}</span>
+			</div>
+			<div class="wenzi">
+				<p>{{details.content}}</p>
+			</div>
+			<div class="detalis-img">
+				<img :src="details.img_url"  />
+			</div>
+		</div>
+		<div class="graphic-footer">
+			<div class="collection">
+				<img src="../imgs/collection.png">
+				<!--<img src="../../img/important/collection2.png" />-->
+				<p>收藏</p>
+			</div>
+			<div id="share" class="share">
+				<img src="../imgs/share.png">
+				<p>分享</p>
+			</div>
+			<span class="placeholder"></span>
+		</div>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/app/common.js" ></script>
+		<script type="text/javascript" src="../js/app/app.js" ></script>
+		<script type="text/javascript" src="../js/lib/vue/vue.min.js" ></script>
+		<script type="text/javascript" src="../js/app/html/details.js" ></script>
+	</body>
+
+</html>

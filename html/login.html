@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/merchants-style.css" />
+		<style>
+			button:enabled:active {
+				background: rgba(250, 250, 250, 0.2);
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #555;"></a>-->
+		    <h1 class="mui-title">账户登录</h1>
+		    <a id="z-registered" href="registered.html" class="registered mui-pull-right">注册</a>
+		</header>
+		<div id="loginvue" class="mui-content">
+			<div class="logo-box">
+				<img src="../imgs/logo.png"/><br />
+				<img src="../imgs/was.png" />
+				<p class="apptype">技师版</p>
+			</div>
+			<div class="login-box">
+				<div class="phone-box">
+					<span><img src="../imgs/phone.png"/></span>
+					<input v-model="phone" type="tel" placeholder="请输入手机号"/>
+				</div>
+				<div class="password-box">
+					<span><img src="../imgs/lock.png"/></span>
+					<input v-model="smscode" type="text" placeholder="请输入验证码"/>
+				</div>
+				<div class="code-box">
+					<button @click="getCode(event)">发送验证码</button>					
+				<!--	<button>语音验证</button>	-->				
+				</div>
+				<div class="logobtn">
+					<button @click="submitBtn()" id="dengl">立即登录</button>
+				</div>
+			</div>
+		</div>
+		<p class="kudai">技术支持 @ 酷戴科技</p>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/zepto.min.js" ></script>
+		<script type="text/javascript" src="../js/app/common.js" ></script>
+		<script type="text/javascript" src="../js/app/app.js" ></script>
+		<script type="text/javascript" src="../js/lib/vue/vue.min.js" ></script>
+		<script type="text/javascript" src="../js/app/regex.js" ></script>
+		<script type="text/javascript" src="../js/app/html/login.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			mui('body').on('tap', 'a', function() {
+				document.location.href = this.href;
+			});
+			$("#z-registered")[0].addEventListener("tap",function(){
+				window.location.href='registered.html';
+			});
+		</script>
+	</body>
+
+</html>

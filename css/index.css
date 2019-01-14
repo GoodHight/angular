@@ -1,0 +1,289 @@
+body {
+	margin-bottom: 60px;
+}
+::-webkit-scrollbar {
+	display: none;
+}
+
+.mui-icon-search:before {
+	color: #ffffff;
+}
+
+.header{
+	background: url(../imgs/770626555997774730.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.mui-search .mui-placeholder {
+	color: white;
+	position: absolute;
+	top: 8px;
+}
+
+.mui-active::before {
+	position: absolute!important;
+	top: 8px;
+	left: 30px!important;
+}
+
+.mui-search .mui-placeholder:before {
+	color: white;
+}
+
+.header .sousuo {
+	width: 90%!important;
+	margin: 8px 5% !important;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+input[type=search] {
+	border-radius: 15px;
+}
+
+.mui-search::before {
+	color: white;
+	position: absolute;
+	top: 33px;
+}
+.info-type {
+	width: 100%;
+	height: 45px;
+	border-top: 1px solid gainsboro;
+	border-bottom: 1px solid gainsboro;
+	background: white;
+	margin-bottom: 2px;
+	position: relative;
+}
+
+.info-type>ul {
+	width: auto;
+	height: 45px;
+	padding-left: 15px;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.info-type>ul {
+	width: auto;
+	height: 45px;
+	padding-left: 15px;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+.info-type-c {
+	background: white !important;
+	color: #00BE9E!important;
+	border-bottom: 2px solid #00BE9E;
+}
+
+.info-type>ul>li {
+	width: auto;
+	display: inline-block;
+	padding: 0px 10px 8px 10px;
+	font-size: 0.8rem;
+	color: #555;
+	margin-right: 15px;
+	margin-top: 12px;
+	padding-top: 1px;
+}
+
+.navigation {
+	background: #FFFFFF;
+	margin-bottom: 5px;
+}
+
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	color: #00be9e!important;
+	
+	border-bottom: 2px solid #00be9e;
+	background: 0 0;
+}
+
+.mui-segmented-control .mui-control-item {
+	line-height: 40px;
+	color: #555555!important;
+}
+
+.mui-table-view-cell {
+	padding: 11px 8px;
+}
+
+.mui-control-content {
+	color: #666666!important;
+}
+
+.quan-data {
+	width: 100%;
+	height: 42px;
+}
+.mui-segmented-control .mui-control-item{
+	line-height: 36px;
+}
+.quan-data .id-img {
+	width: 40px;
+	height: 40px;
+	/*border: 1px solid #F3F3F3;*/
+	border-radius: 17px;
+	float: left;
+	/*margin: 5px 5px;*/
+	overflow: hidden;
+}
+
+.quan-data .id-img img {
+	width: 100%;
+}
+
+.user-id {
+	margin-left: 10px;
+	float: left;
+	font-size: 13px;
+}
+.user-time{
+	color: #888888;
+}
+.wser-name {
+	font-size: 14px;
+	color: #666!important;
+}
+
+.quan-data .zt {
+	font-size: 10px;
+	/*margin-top: 10px!important;*/
+	padding: 0 4px;
+	color: #00BE9E;
+	background: #f2f2f2;
+	border: 1px solid #F2F2F2;
+	border-radius: 15px;
+	margin-right: 5px;
+	letter-spacing: 0.5px;
+}
+
+.mui-table-view-cell p {
+	width: 100%;
+	margin: 7px 0;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	overflow: hidden;
+	color: #666;
+}
+.mui-table-view-cell .gengduo{
+	width: 100%;
+	padding: 2px 0!important;
+	margin: 2px 0!important;
+	color: #00BE9E!important;
+}
+.quan-data-img {
+	position: relative;
+    width: 120px;
+    height: 100px;
+    overflow: hidden;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.quan-data-img img {
+	width: 100%;
+}
+.mui-icon img {
+    height: 100%;
+}
+/**/
+/*详情页*/
+/**/
+header{
+	background: #FFFFFF!important;
+}
+.mui-bar .mui-title{
+	color: #666;
+}
+.mui-icon-back:before, .mui-icon-left-nav:before{
+	color: #9d9d9d;
+}
+.content{
+	padding: 8px 15px;
+	margin-top: 48px;
+	background: #FFFFFF;
+	display: block;
+}
+.wenzi{
+	margin-top: 5px;
+	letter-spacing: 1px;
+}
+ .wenzi p{
+	color: #666;
+}
+.detalis-img{
+	width: 260px;
+	height: 240px;
+	margin: 20px 0 50px;
+}
+.detalis-img img{
+	width: 100%;
+	/*height: 100%;*/
+}
+.mui-slider-indicator .mui-indicator{
+	width: 13px;
+	height: 2px;
+	margin: 1px 6px;
+	border-radius: 15px!important;
+	background: #d4cece;
+}
+
+.mui-bar-tab~.mui-content{
+	padding: 0;
+}
+.huiding{
+	position: fixed;
+    z-index: 999;
+    right: 10px;
+    bottom: 100px;
+    width: 35px;
+	height: 35px;
+}
+.huiding img{
+	height: 100%;
+}
+  .graphic-footer {
+  	line-height: 16px!important;
+	width: 100%;
+	height: 50px;
+	/*position: relative;*/
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	border-top: 1px solid gainsboro;
+	padding-top: 5px;
+	background: white;
+	z-index: 102;
+}
+
+.graphic-footer>div {
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+
+.share>img {
+	height: 22px;
+}
+
+.graphic-footer>div>p {
+	font-size: 0.8rem;
+}
+
+.collection>img {
+	height: 22px;
+}
+.placeholder {
+	height: 35px;
+	width: 1px;
+	background: #CACACA;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+}

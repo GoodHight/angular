@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>搜索</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<style>
+			/*.mui-bar-nav {
+				-webkit-box-shadow: initial!important;
+				box-shadow: initial!important;
+				background: #FFFFFF;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: initial!important;
+				box-shadow: initial!important;
+			}*/
+			
+			input[type=text] {
+				border: none;
+				border-radius: 15px;
+				width: 90%;
+				margin: 6px 6px;
+				background: #F3F3F3;
+				height: auto;
+				padding: 6px 15px;
+				color: #ccc;
+			}
+			
+			form {
+				width: 80%;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-right {
+				color: #9d9d9d!important;
+			}
+			
+			.mui-pull-right:active {
+				border: none!important;
+			}
+			
+			#z_search::-webkit-input-placeholder {
+				color: #ccc;
+			}
+			
+			.search-lable>p {
+				font-size: 0.9rem;
+				color: #00BE9E !important;
+			}
+			
+			.search-lable {
+				background: #fff;
+				padding: 20px 10px;
+				border-bottom: 1px solid #F3F3F3;
+			}
+			
+			.search-lable>ul>li {
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+				border-radius: 15px;
+				padding: 0px 15px;
+				font-size: 0.8rem;
+				background: #F3F3F3;
+				margin-right: 10px;
+				margin-top: 10px;
+				color: #8A8A8A;
+			}
+			
+			.mui-content {
+				background: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="headerVue" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #555;"></a>
+			<button @click="searchClick()" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">确定</button>
+			<form>
+				<div class="search-box">
+					<input v-model="search" id="z_search" type="text"  placeholder="搜索">
+				</div>
+			</form>
+		</header>
+		<div id="sousuovue" class="mui-content">
+			<div class="search-lable">
+				<p>历史搜索</p>
+				<ul>
+					<li>亚健康</li>
+					<li>怎么改善睡眠质量</li>
+					<li>头痛很严重</li>
+					<li>月经紊乱</li>
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/app/common.js" ></script>
+		<script type="text/javascript" src="../js/app/app.js" ></script>
+		<script type="text/javascript" src="../js/lib/vue/vue.min.js" ></script>
+		<script type="text/javascript" src="../js/app/html/sousuo.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</body>
+
+</html>

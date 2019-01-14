@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/leaflets.css" />
+		<link rel="stylesheet" type="text/css" href="../css/pickice/mui.picker.min.css" />
+		<style>
+			.loading {
+				text-align: center;
+				padding: 8px 0;
+			}
+		</style>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item " href="index.html">
+				<span class="mui-icon"><img src="../imgs/homepage1.png"/></span>
+				<span class="mui-tab-label p3">首页</span>
+			</a>
+			<a class="mui-tab-item mui-active" href="#">
+				<span class="mui-icon "><img src="../imgs/sendasingle1.png"/></span>
+				<span class="mui-tab-label">我的派单</span>
+			</a>
+			<a class="mui-tab-item" href="problem/problem.html">
+				<span class="mui-icon "><img src="../imgs/theproblem.png"/></span>
+				<span class="mui-tab-label">问题疑答</span>
+			</a>
+			<a class="mui-tab-item" href="personal/personal.html">
+				<span class="mui-icon "><img src="../imgs/personalcenter.png"/></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+		</nav>
+		<div id="leaflets">
+			<div class="header">
+				<div id="z_order_time" class="add-search" style="float: right;">
+					<img src="../imgs/time.png" />
+				</div>
+				<div class="mui-input-row mui-search">
+					<input class="sousuo" type="search" class="mui-input-clear" placeholder="输入关键字搜索">
+				</div>
+			</div>
+			<div class="order-time-box" style="display: none;">
+				<div class="mui-backdrop">
+					<div class="order-time">
+						<div><span>最近三天</span></div>
+						<div><span>最近一周</span></div>
+						<div><span>最近一月</span></div>
+						<div><span class="btn">更多</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="navigation">
+				<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary">
+					<span class="mui-control-item mui-active" href="javascript:;" @click="orderSeleType(event, '')">
+						全部
+					</span>
+					<span class="mui-control-item " href="javascript:;" @click="orderSeleType(event, 'true')">
+						已完成
+					</span>
+					<span class="mui-control-item " href="javascript:;" @click="orderSeleType(event, 'false')">
+						待完成
+					</span>
+				</div>
+			</div>
+			<ul class="leaflets-list mui-control-content mui-active" id="item1">
+				<template v-if="allOrder != null" v-for="(info, index) in allOrder">
+					<li class="leaflets-list-for" @click="fullText(event, info.sign, info.service_type)">
+						<div class="leaflets-img">
+							<img src="../imgs/tame6.png" />
+							<!--:src="info.img_url"-->
+						</div>
+						<div class="leaflets-box">
+							<div class="leaflets-name">
+								<p>{{info.service_title}}<span class="FR leaflets-time" style="font-size: 14px;">{{info.created_time}}</span></p>
+								<span class="FL">订单号：{{info.order_number}}</span>
+
+							</div>
+							<div class="leaflets-jiage">
+								<img src="../imgs/04.png" /><span class="jishi-id">{{info.name}}</span><span class="fuwu-xingshi">{{info.service_type|serviceType}}</span>
+								<br />
+								<p>预约时间：{{info.service_time}}</p>
+								<!--<span v-if="info.work_nature != 'FULLTIME'"><img src="../imgs/¥.png" />佣金:{{info.commission}}</span>-->
+								<span v-if="info.service_type == 'STORE'" class="use-state" style="padding: 2px 0.3rem 2px 0;float: left;">已接单</span>
+								<span v-else class="use-state" style="padding: 2px 0.3rem 2px 0;float: left;">{{info.artificer_order_status|orderStatusFilter}}</span>
+								<span v-if="info.service_type != 'STORE' && info.artificer_order_status == 'WAIT_ORDERS'" @click.stop="getOrderinfo(event, info.sign)" class="mui-btn" style="padding:2px 12px;border: 1px solid #00BE9E;color: #00BE9E;float: right;">操作</span>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</li>
+				</template>
+
+				<div class="loading">
+					<template v-if="allOrder != '' && allOrder.length > 0">
+						<p v-if="allOrder != '' && allOrder.length >= pagetotal">已经到底啦</p>
+						<p v-else-if="allOrder.length > 0 && allOrder.length <= pagetotal" @click="getMoreHeader()">点击加载更多</p>
+					</template>
+					<template v-if="lengthShow">
+						<p>暂无订单</p>
+					</template>
+				</div>
+			</ul>
+			<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
+				<ul class="mui-table-view">
+					<li  class="mui-table-view-cell" @click="orderOperation(event, 'REFUSE_ORDERS')">
+						接单
+					</li>
+					<li  class="mui-table-view-cell" @click="orderOperation(event, 'ALREADY_ORDERS')">
+						拒绝
+					</li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#picture"><b>取消</b></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/adsss/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../js/app/common.js"></script>
+		<script type="text/javascript" src="../js/app/app.js"></script>
+		<script type="text/javascript" src="../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../js/app/html/leaflets.js"></script>
+		<script>
+			mui('body').on('tap', 'a', function() {
+				window.top.location.href = this.href;
+			});
+			
+			
+			function plusReady() {
+				// 设置系统状态栏背景为主题蓝色
+				plus.navigator.setStatusBarBackground("#00ba9f");
+				// 设置系统状态栏样式为浅色文字
+				plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			};
+			
+			
+			//			$("#z_order_time").click(function(){
+			//				$(".mui-backdrop").toggle()
+			//	});
+			//			var mask = mui.createMask();
+			//			var timetype = true;
+			//			$("#z_order_time")[0].addEventListener("tap", function() {
+			//				if(timetype) {
+			//					$(".order-time-box").show();
+			//					$(".order-time").css({
+			//						"margin-top": "0px",
+			//						"transition": "0.5s"
+			//					});
+			//					timetype = false;
+			//				} else {
+			//					$(".order-time").css({
+			//						"margin-top": "-11px",
+			//						"transition": "0.5s"
+			//					});
+			//					setTimeout(function() {
+			//						$(".order-time-box").hide();
+			//					}, 500);
+			//					timetype = true;
+			//				}
+			//			});
+			//			$(".mui-backdrop")[0].addEventListener("tap", function() {
+			//				$(".order-time").css({
+			//					"margin-top": "-11px",
+			//					"transition": "0.5s"
+			//				});
+			//				setTimeout(function() {
+			//					$(".order-time-box").hide();
+			//				}, 500);
+			//				timetype = true;
+			//			});
+			//			mui.init();
+			//			var btns = $('.btn');
+			//			var data_options = '{"type":"date","beginYear":2018,"endYear":2025}'
+			//			btns.each(function(i, btn) {
+			//				btn.addEventListener('tap', function() {
+			//					var optionsJson = data_options || '{}';
+			//					var options = JSON.parse(optionsJson);
+			//					var id = this.getAttribute('id');
+			//					var picker = new mui.DtPicker(options);
+			//					picker.show(function(rs) {
+			//						console.log(rs.text);
+			//						picker.dispose();
+			//						$(".order-time").css({
+			//							"margin-top": "-11px",
+			//							"transition": "0.5s"
+			//						});
+			//						setTimeout(function() {
+			//							$(".order-time-box").hide();
+			//						}, 500);
+			//					});
+			//				}, false);
+			//			});
+			//			$(".mui-backdrop").click(function() {
+			//				mask.close()
+			//			})
+			//			$(".leaflets-list-for").click(function() {
+			//				location.href = "leaflets/leaflets-details.html"
+			//			})
+		</script>
+	</body>
+
+</html>

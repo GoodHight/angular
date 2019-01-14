@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>修改资料</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/personal.css" /> />
+		<link rel="stylesheet" href="../../css/pickice/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/pickice/mui.poppicker.css" />
+		<script src="http://static.cqnanlin.com/s/cities.json"></script>
+		<style>
+			.mui-bar-nav {
+				-webkit-box-shadow: initial!important;
+				box-shadow: initial!important;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: initial!important;
+				box-shadow: initial!important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="headervue" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #019eff;"></a>
+			<h1 class="mui-title">修改资料</h1>
+			<button @click="sumbit()" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">确定</button>
+		</header>
+		<div id="modifyvue" class="content">
+			<ul class="row">
+				<li id="z_file" @click="triggerFile(event)" style="height: 55px;margin: 0;padding: 0;">
+					<span>头像：</span>
+					<input type="" name="" id="" value="" placeholder="点击上传" readonly="readonly"/>
+					<img v-if="headerurl != null &&  headerurl != ''" id="z_uesrimg" :src="headerurl" />
+					<img v-else id="z_uesrimg" src="../../imgs/headportrait1.png" />
+				</li>
+				<li>
+					<span>姓名：</span>
+					<input v-model="name" type="text" placeholder="请输入修改姓名" />
+				</li>
+				<li @click="selectPfi()">
+					<span>职称：</span>
+					<input v-model="title" type="text" placeholder="请输入修改职称" readonly="readonly" />
+				</li>
+				<li @click="errorBtn()">
+					<span>服务范围：</span>
+					<input v-cloak type="text" :value="userinfo.service_types" disabled="disabled" />
+				</li>
+				<li v-if="userinfo.work_nature == 'PART_TIME'" @click="showService(event)">
+					<span style="float: left;">服务地址：</span>
+					<input id="showCityPicker3" v-model="showservice" type="text" name="" id="" value="" placeholder="请选择服务地址" readonly="readonly" />
+				</li>
+				<li @click="errorBtn()" v-else>
+					<span>服务商家：</span>
+					<input v-model="userinfo.seller_name" type="text" disabled="disabled" />
+				</li>
+				<div class="jiesao">
+					<span>介绍:</span>
+					<textarea v-model="introduce" placeholder="输入介绍内容"></textarea>
+				</div>
+			</ul>
+			<input type="file" name="" id="file1" @change="imargeFile(event)" style="display: none;" />
+			<div class="selectarea_box">
+				<div class="selectarea">
+					<div class="area-title">
+						<span>
+							请选择您所服务的地址范围
+						</span>
+					</div>
+					<p>
+						<span>省</span>
+						<span>市</span>
+						<span>区</span>
+						<span>范围</span>
+					</p>
+					<div>
+						<select @change="selectArea(event,01)">
+							<template v-if="province != null" v-for="(list, index) in province">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+					</div>
+					<div>
+						<select @change="selectArea(event,02)">
+							<template v-if="citys != null" v-for="(list, index) in citys">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+
+					</div>
+					<div>
+						<select @change="selectArea(event,03)">
+							<template v-if="area != null" v-for="(list, index) in area">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+					</div>
+					<div>
+						<select @change="selectArea(event,04)">
+							<template v-for="(list,index) in scope">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+					</div>
+					<button class="selectarea-btn">确定</button>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../../js/adsss/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../../js/adsss/mui.poppicker.js"></script>
+		<script type="text/javascript" src="../../js/adsss/city.data.js"></script>
+		<script type="text/javascript" src="../../js/adsss/city.data-3.js"></script>
+		<script type="text/javascript" src="../../js/app/common.js"></script>
+		<script type="text/javascript" src="../../js/app/app.js"></script>
+		<script type="text/javascript" src="../../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../../js/app/html/modify.js"></script>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+	</body>
+
+</html>

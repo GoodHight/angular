@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>通知中心</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/personal.css" />
+		<style>
+			.mui-icon-back:before,
+			.mui-icon-left-nav:before {
+				color: #555555;
+			}
+			
+			ul {
+				margin-top: 48px;
+				background: #FFFFFF;
+			}
+			
+			li {
+				border-bottom: 1px solid #e2e2e2;
+				padding: 18px 10px;
+				height: 86px;
+			}
+			
+			.mui-checkbox input[type=checkbox]:before,
+			.mui-radio input[type=radio]:before {
+				font-size: 23px;
+				color: #00BE9E;
+			}
+			
+			.mui-checkbox input[type=checkbox]:checked:before,
+			.mui-radio input[type=radio]:checked:before {
+				color: #00BE9E;
+			}
+			
+			.mui-checkbox input[type=checkbox] {
+				position: absolute;
+				right: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #019eff;"></a>
+			<h1 class="mui-title">通知中心</h1>
+			<button id="btn-bianji" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">编辑</button>
+			<button id="btn-qin" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right" style="display: none;">清空</button>
+		</header>
+		<ul>
+			<li >
+				<a href="platform-tz.html">
+				<div class="notice-img">
+					<img src="../../imgs/333.png" />
+				</div>
+					<div class="tz-left FL">
+						<span>系统通知</span>
+						<p>你已领取了红包</p>
+					</div>
+					
+				</a>
+				<div class="tz-right FR">
+						<span>11：12</span>
+						<br />
+						<div class="mui-input-row mui-checkbox">
+							<label></label>
+							<input name="checkbox1" value="Item 1" type="checkbox" checked>
+						</div>
+					</div>
+			</li>
+			<li>
+				<div class="notice-img">
+					<img src="../../imgs/333.png" />
+				</div>
+				<div class="notice-tz">
+					<div class="tz-left FL">
+						<span>绿肥红瘦</span>
+						<p>【图片】</p>
+					</div>
+					<div class="tz-right FR">
+						<span>11：12</span>
+						<br />
+						<div class="mui-input-row mui-checkbox">
+							<label></label>
+							<input name="checkbox1" value="Item 2" type="checkbox" >
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="notice-img">
+					<img src="../../imgs/333.png" />
+				</div>
+				<div class="notice-tz" style="border-bottom: none;">
+					<div class="tz-left FL">
+						<span>系统通知</span>
+						<p>你已领取了红包</p>
+					</div>
+					<div class="tz-right FR">
+						<span>11：12</span>
+						<br />
+						<div class="mui-input-row mui-checkbox">
+							<label></label>
+							<input name="checkbox1" value="Item 3" type="checkbox" >
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script>
+			$("#btn-bianji").click(function() {
+				$(".mui-input-row").show();
+				 	$("#btn-qin").show();
+					$(this).hide()
+			});
+			$("#btn-qin").click(function() {
+				$(".mui-input-row").hide();
+				 	$("#btn-bianji").show();
+					$(this).hide()
+			});
+		</script>
+	</body>
+
+</html>

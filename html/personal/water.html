@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>流水</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/pickice/mui.picker.min.css" />
+		<link rel="stylesheet" href="../../css/personal.css" />
+		<style>
+			.mui-icon-back:before,
+			.mui-icon-left-nav:before {
+				color: white;
+			}
+			
+			.mui-title {
+				color: #FFFFFF;
+			}
+			
+			header {
+				border-bottom: 1px solid #f2f2f2!important;
+				background: url(../../imgs/770626555997774730.png) no-repeat!important;
+				background-size: 100% 100%!important;
+			}
+			
+			.right-border {
+				height: 30px;
+				border-left: 2px solid #F2F2F2;
+				float: right;
+				position: relative;
+				top: -38px;
+			}
+			
+			.box {
+				padding-top: 22px;
+			}
+			
+			.mui-row {
+				padding-bottom: 0;
+			}
+			
+			.water-tx {
+				float: right;
+				color: #00BE9E;
+				margin-right: 16px;
+			}
+			
+			.time-top {
+				width: 100%;
+				background: #fff;
+				padding: 18px 5%;
+				margin: 0px auto 0;
+				display: none;
+				text-align: center;
+				border-top: 1px solid #f3f3f3;
+			}
+			
+			.time-top span {
+				border: 1px solid #e2e2e2;
+				padding: 4px 10px;
+				margin-right: 6px;
+				border-radius: 15px;
+				background: #F3F3F3;
+				color: #666;
+			}
+			
+			.navigation {
+				padding-top: 0px;
+				background: #FFFFFF;
+				padding-bottom: 0;
+				position: fixed;
+				top: 44px;
+				width: 100%;
+				z-index: 99;
+			}
+			
+			.mui-control-content {
+				position: relative;
+				top: 85px;
+				z-index: 9;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #019eff;"></a>
+			<h1 class="mui-title">流水</h1>
+			<!--<button class="mui-btn mui-btn-blue mui-btn-link mui-pull-right"><img style="width: 20px;padding-top: 12px;" src="../../imgs/search.png"/></button>-->
+		</header>
+		<div id="Water">
+			<template v-if="">
+				<div class="navigation mui-row">
+					<div class="mui-col-xs-2 mui-col-sm-2"></div>
+					<div class="mui-col-xs-8 mui-col-sm-8">
+						<!--<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary">
+							<a @click="getWater(event,'',true)" class="mui-control-item mui-active" href="#item1">
+								全部
+							</a>
+							<template v-if="HdList != null && HdList.length > 0" v-for="(list, index) in HdList">
+								<a @click="getWater(event, list.sign,false)" class="mui-control-item">{{list.category_name}}</a>
+							</template>
+						</div>-->
+						<div class="info-type">
+							<ul>
+								<li @click="getWaterOnly(event,'',true)" class="info-type-c">全部</li>
+								<template v-if="HdList != null && HdList.length > 0" v-for="(list, index) in HdList">
+									<li @click="getWater(event, list.sign,false)">{{list.category_name}}</li>
+								</template>
+							</ul>
+						</div>
+					</div>
+					<div class="mui-col-xs-2 mui-col-sm-2" style="text-align: right;">
+						<button @click="getTimeBtn()" type="button" class="mui-btn mui-btn-white"><img style="width: 19px;" src="../../imgs/time2.png"/></button>
+					</div>
+				</div>
+				<div class="mui-control-content mui-active">
+					<div class="statistics">
+						<div class="statistics-tj">
+							<img src="../../imgs/data.png" />
+							<span>数据统计</span>
+							<span class="water-tx">提现</span>
+						</div>
+					</div>
+					<div class="time-top mui-row" style="display: none;">
+						<span @click="getStartTimeStr(event)" class="z_create_time" id="result">选择开始时间</span>-
+						<span @click="getEndTimeStr(event)" class="z_create_time2" id="result2">选择结束时间</span>
+						<span v-if="type == true" @click="getWater(event,sign,true)" style="color:#00BE9E ;">查询</span>
+						<span v-if="type == false" @click="getWater(event,sign,false)" style="color:#00BE9E ;">查询</span>
+						<span v-if="type == undefined" @click="getWater(event,sign,true)" style="color:#00BE9E ;">查询</span>
+						<p style="text-align: center;width: 100%;margin-top: 14px;">注*开始时间不能大于结束时间！</p>
+					</div>
+					<ul class="mui-row statistics-list">
+						<template v-if="timeStr != null && timeStr.service_num != null ">
+							<li class="mui-col-xs-4 mui-col-sm-4">
+								<span>服务单数</span>
+								<br />
+								<p>{{timeStr.service_num}}</p>
+								<div class="right-border"></div>
+							</li>
+							<li class="mui-col-xs-4 mui-col-sm-4">
+								<span>收入合计</span>
+								<br />
+								<p>{{timeStr.income_money}}</p>
+								<div class="right-border"></div>
+							</li>
+							<li class="mui-col-xs-4 mui-col-sm-4">
+								<span>支出合计</span>
+								<br />
+								<p>{{timeStr.pay_money}}</p>
+							</li>
+						</template>
+
+					</ul>
+				</div>
+				<div style="background: #FFFFFF;margin-top: 90px; position: relative;top: 0;width: 100%;">
+					<img class="box-img" src="../../imgs/runningwater.png" />
+					<div class="box">
+						<ul>
+							<template v-if="water_list != ''&& water_list.length > 0" v-for="(info, index) in water_list">
+								<li>
+									<div class="left full"><i></i></div>
+									<div class="right mui-row" style="border: none;padding-top: 0!important;">
+										<div class="mui-col-xs-3 mui-col-sm-3">
+											<span>{{info.created_time}}</span>
+											<!--<br />
+										<span>16:48</span>-->
+										</div>
+										<div class="mui-col-xs-6 mui-col-sm-6">
+											<p>{{info.income_expend_type|moneyType}}</p>
+										</div>
+										<div class="mui-col-xs-3 mui-col-sm-3">
+											<p>
+												<span v-if="info.income_expend_type =='INCOME_TYPE'">+</span>
+												<span v-if="info.income_expend_type !='INCOME_TYPE'">-</span> {{info.money}}
+											</p>
+										</div>
+									</div>
+								</li>
+							</template>
+						</ul>
+					</div>
+					<p v-if="water_list == ''" style="text-align: center;padding: 40px;">暂未查询到数据</p>
+				</div>
+			</template>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../../js/adsss/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../../js/app/common.js"></script>
+		<script type="text/javascript" src="../../js/app/app.js"></script>
+		<script type="text/javascript" src="../../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../../js/app/html/water.js"></script>
+	</body>
+
+</html>

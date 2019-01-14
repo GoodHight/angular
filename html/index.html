@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<link rel="stylesheet" href="../css/img.css" />
+		<style>
+			.mui-slider {
+				min-height: 200px;
+			}
+			
+			.mui-slider-item img {
+				width: 100%!important;
+			}
+			
+			.list-toutiaos {
+				margin-top: 0;
+				margin-bottom: 0;
+				padding: 10px;
+				list-style: none;
+				background-color: #fff;
+				border-bottom: 1px solid #F2F2F2;
+			}
+			
+			.ln-search {
+				position: absolute;
+				right: 5%;
+				top: 9px;
+				background: rgba(255, 255, 255, 0.01);
+				border: none;
+				color: #fff;
+			}
+			
+			.ln-search:active {
+				background-color: rgba(255, 255, 255, 0.01)!important
+			}
+			
+			input {
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#">
+				<span class="mui-icon"><img src="../imgs/homepage.png"/></span>
+				<span class="mui-tab-label p3">首页</span>
+			</a>
+			<a class="mui-tab-item" href="leaflets.html">
+				<span class="mui-icon "><img src="../imgs/sendasingle.png"/></span>
+				<span class="mui-tab-label">我的派单</span>
+			</a>
+			<a class="mui-tab-item" href="problem/problem.html">
+				<span class="mui-icon "><img src="../imgs/theproblem.png"/></span>
+				<span class="mui-tab-label">问题疑答</span>
+			</a>
+			<a class="mui-tab-item" href="personal/personal.html">
+				<span class="mui-icon "><img src="../imgs/personalcenter.png"/></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="header" class="header">
+				<div class="mui-input-row mui-search">
+					<input v-model="searchText" type="search" class="sousuo" placeholder="输入关键字搜索">
+					<button @click="searchBtn()" class="ln-search">搜索</button>
+				</div>
+			</div>
+			<div id="indexvue">
+				<!--<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted navigation">
+					<div class="mui-scroll">
+						<div class="mui-control-item mui-active" @click="typeSelect(event, '')">
+							全部
+						</div>
+						<template v-if="HdList != null && HdList.length > 0" v-for="(list, index) in HdList">
+							<div @click="typeSelect(event, list.sign)" class="mui-control-item">{{list.name}}</div>
+						</template>
+					</div>
+				</div>-->
+				<div class="info-type">
+					<ul>
+						<li @click="typeSelect(event, '')" class="info-type-c">全部</li>
+						<template v-if="HdList != null && HdList.length > 0" v-for="(list, index) in HdList">
+							<li @click="typeSelect(event, list.sign)" class="">{{list.name}}</li>
+						</template>
+					</ul>
+				</div>
+
+				<div class="banner">
+					<div id="slider" class="mui-slider">
+						<div v-if="bannerlist!=null && bannerlist.length > 0" class="mui-slider-group mui-slider-loop">
+							<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+							<div class="mui-slider-item mui-slider-item-duplicate" style="max-height: 200px;">
+								<a href="#">
+									<img :src="bannerlist[bannerlist.length-1].img_url">
+								</a>
+							</div>
+							<!-- 第一张 -->
+							<template v-if="bannerlist!=null && bannerlist.length > 0" v-for="(img, index) in bannerlist">
+								<div class="mui-slider-item" style="max-height: 200px;">
+									<a href="#">
+										<img :src="img.img_url">
+									</a>
+								</div>
+							</template>
+							<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+							<div class="mui-slider-item mui-slider-item-duplicate" style="max-height: 200px;">
+								<a href="#">
+									<img :src="bannerlist[0].img_url">
+								</a>
+							</div>
+						</div>
+						<div class="mui-slider-indicator">
+							<template v-for="(img, index) in bannerlist">
+								<div :class="index==0?'mui-indicator':'mui-indicator mui-active' "></div>
+							</template>
+						</div>
+					</div>
+				</div>
+				<ul style="margin-top: 7px;">
+					<template v-if="headerList != null" v-for="(info, index) in headerList">
+						<li class="list-toutiaos">
+							<div class="quan-data">
+								<div class="id-img">
+									<img src="../imgs/headportrait.png" />
+								</div>
+								<div class="user-id">
+									<span class="wser-name">平台头条君</span>
+									<br />
+									<span class=".user-time">{{info.created_time}}</span>
+								</div>
+								<span class="zt FR">{{info.name}}</span>
+							</div>
+							<div class="clear"></div>
+							<p>{{info.content}}</p>
+							<div class="gengduo" @click="fullText(event, info.sign)">点击查看更多>></div>
+							<div class="mui-content-padded quan-data-img">
+								<img :src="info.img_url" data-preview-src="" data-preview-group="1" />
+							</div>
+						</li>
+					</template>
+				</ul>
+				<div class="huiding">
+					<img src="../imgs/top.png" />
+				</div>
+				<div class="loading">
+					<p v-cloak v-if="headerList != '' && headerList.length >= pagetotal" style="padding: 15px;text-align: center;">已经到底啦</p>
+					<p v-cloak v-else @click="getMoreHeader()" style="padding: 15px;text-align: center;">点击加载更多</p>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/mui.zoom.js"></script>
+		<script type="text/javascript" src="../js/mui.previewimage.js"></script>
+		<script type="text/javascript" src="../js/app/common.js"></script>
+		<script type="text/javascript" src="../js/app/app.js"></script>
+		<script type="text/javascript" src="../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../js/app/html/index.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui('body').on('tap', 'a', function() {
+				window.top.location.href = this.href;
+			});
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+				interval: 400000 //自动轮播周期，若为0则不自动播放，默认为0；
+			});
+			//			$(".header").click(function() {
+			//				setTimeout(function() {
+			//					location.href = "sousuo.html";
+			//				}, 100);
+			//			})
+			$(".huiding").click(function() {
+				setTimeout(function() {
+					window.location.href = "#header";
+				}, 100);
+			})
+			mui.previewImage();
+
+			//
+			function plusReady() {
+				// 设置系统状态栏背景为主题蓝色
+				plus.navigator.setStatusBarBackground("#00ba9f");
+				// 设置系统状态栏样式为浅色文字
+				plus.navigator.setStatusBarStyle("dark");
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+		</script>
+	</body>
+
+</html>

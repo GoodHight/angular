@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/public.css" />
+		<link rel="stylesheet" href="../../css/leaflets.css" />
+		<style>
+			.mui-icon-back:before,
+			.mui-icon-left-nav:before {
+				color: #00BE9E;
+			}
+			.ul-details li{
+				overflow: auto;
+			}
+			.headerImg{
+				width: 100%;
+				min-height: 150px;
+			}
+			.headerImg>img{
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #019eff;"></a>
+			<h1 class="mui-title">订单详情</h1>
+		</header>
+		<div id="leafletsDetails" style="margin-top: 48px;">
+			<!--<div class="banner" style="margin-top: 44px;">
+				<div id="slider" class="mui-slider" style="height: 200px;">
+					<div  class="mui-slider-group mui-slider-loop">
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img :src="detailImg[detailImg.length-1].img_url">
+							</a>
+						</div>
+						<template v-if="detailImg!=null && detailImg.length > 0" v-for="(img, index) in detailImg">
+							<div class="mui-slider-item">
+								<a href="#">
+									<img :src="img.img_url_ad">
+								</a>
+							</div>
+						</template>
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img :src="detailImg[0].img_url_ad">
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<template v-for="(img, index) in detailImg">
+							<div :class="index==0?'mui-indicator':'mui-indicator mui-active' "></div>
+						</template>
+					</div>
+				</div>
+			</div>-->
+			<template v-if="OrderDetail != null">
+				<div class="headerImg">
+					<img :src="OrderDetail.order_service_ad_detail_vos[0].img_url_ad"/>
+				</div>
+			<div class="details-top">
+				<span>{{OrderDetail.service_title}}</span>
+				<!--<button>确认已服务</button>-->
+				<!--<p id="stars">
+					<a class="starsA"></a><span class="money">4.5分</span>
+				</p>-->
+			</div>
+			<ul class="ul-details">
+				<li><img class="one-one" src="../../imgs/information.png" /><span>订单详情</span></li>
+				<li><span>订单号：{{OrderDetail.order_number}}</span><span class="use-state" v-if="type != 'STORE'">{{OrderDetail.artificer_orders_status|orderStatusFilter}}</span><span v-else class="use-state">已接单</span></li>
+				<li><span>{{OrderDetail.service_title}}</span><span class="fuwu-xingshi FR">{{OrderDetail.service_type|serviceType}}服务</span></li>
+				<li v-if="OrderDetail.service_type != 'STORE'"><img class="tow-tow" src="../../imgs/address.png" /><span>{{OrderDetail.address}}</span></li>
+				<li><img src="../../imgs/time1.png" /><span>{{OrderDetail.service_time}}</span><a :href="'tel:'+OrderDetail.phone"><span class="FR" style="color: #666;">立即联系</span><img class="FR" src="../../imgs/call.png" /></a></li>
+				<li v-if="OrderDetail.service_type != 'STORE'"><img src="../../imgs/figure.png" /><span>用户：{{OrderDetail.name}}</span></li>
+				<li v-if="OrderDetail.service_type == 'STORE'"><img src="../../imgs/figure.png" /><span>昵称：{{OrderDetail.name}}</span></li>
+				<!--<li v-if="OrderDetail.work_nature != 'FULLTIME'"><img src="../../imgs/rmb.png" /><span>佣金：<span class="money">{{OrderDetail.commission}}</span></span>-->
+
+				</li>
+			</ul>
+			<!--<div class="evaluation">
+				<div class="evaluation-top">
+					<img src="../../imgs/evaluation.png" /><span>用户评价</span>
+				</div>
+				<div class="evaluation--user">
+					<div class="evaluation-tx">
+						<img src="../../imgs/tame5.png" />
+					</div>
+					<div class="evaluation-pingjia">
+						<span class="eva-id">某某</span>
+						<p id="stars">
+							<a class="starsA"></a><span class="money">4.5分</span>
+						</p>
+						<span>很棒很不错的师傅，下次再来,很棒很不错的师傅，下次再来，很棒很不错的师傅，下次再来</span>
+						<div class="pingluntu">
+							<img src="../../imgs/tame3.png" />
+						</div>
+					</div>
+				</div>
+			</div>-->
+			</template>
+			<!--<div class="evaluation">
+				<div class="evaluation-top">
+					<img src="../../imgs/evaluation.png" /><span>用户评价</span>
+				</div>
+				<div class="evaluation--user">
+					<div class="evaluation-tx">
+						<img :src="evaluate.head_url" />
+					</div>
+					<div class="evaluation-pingjia">
+						<span class="eva-id">{{evaluate.nickname}}</span>
+						<p id="stars">
+							<a class="starsA"></a><span class="money">4.5分</span>
+						</p>
+						<span>{{evaluate.evaluate_content}}</span>
+						<div class="pingluntu">
+							<img :src="evaluate.img_url" />
+						</div>
+					</div>
+				</div>
+			</div>-->
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../../js/app/common.js"></script>
+		<script type="text/javascript" src="../../js/app/app.js"></script>
+		<script type="text/javascript" src="../../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../../js/app/html/leaflets-details.js" ></script>
+		<!--<script type="text/javascript" src="../../js/public.js"></script>-->
+		<script>
+		</script>
+	</body>
+
+</html>

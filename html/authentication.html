@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>实名认证</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/leaflets.css" />
+		<link rel="stylesheet" href="../css/pickice/mui.picker.min.css" />
+		<script src="http://static.cqnanlin.com/s/cities.json"></script>
+		<style>
+			body {
+				line-height: initial;
+			}
+			.birth span {
+				float: left;
+			}
+			.birth a {
+				color: #BBB2B2;
+			}
+			input {
+				font-size: 14px;
+				padding-left: 0!important;
+			}
+			button:enabled:active {
+				background: rgba(250, 250, 250, 0.2);
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #555555;"></a>
+			<h1 class="mui-title">实名认证</h1>
+		</header>
+		<div id="authenticationvue" v-cloak class="mui-content">
+			<div class="personal-data">
+				<div class="birth">
+					<span>姓名：</span>
+					<input v-model="name" type="text" placeholder="请输入姓名" />
+				</div>
+				<div @click="openUpbox()" class="birth">
+					<span>职称：</span>
+					<input v-model="professionaltext" type="text" placeholder="请选择职称"  readonly="readonly"/>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right"></a>
+				</div>
+				<div @click="selectService(event)" class="birth">
+					<span class="FL">服务范围：</span>
+					<input v-model="scopersText" type="text" placeholder="请输入服务范围" readonly="readonly" />
+					<a class="mui-icon mui-icon-arrowright mui-pull-right"></a>
+				</div>
+				<div v-if="attType" class="birth">
+					<span class="FL">电话号码：</span>
+					<input v-model="addrCode" type="text" placeholder="请输入电话号码"/>
+				</div>
+				<div v-if="attType" class="birth">
+					<span class="FL">店铺号码：</span>
+					<input v-model="sellerPhone" type="text" placeholder="请输入店铺号码" />
+				</div>
+				<div v-else class="birth showService">
+					<span class="FL">服务地址：</span>
+					<input v-model="showservice" type="text" placeholder="请选择服务地址" readonly="readonly"/>
+					<a class="mui-icon mui-icon-arrowright mui-pull-right"></a>
+				</div>
+				<div class="birth">
+					<span class="FL">个人介绍：</span>
+					<input v-model="introduce" type="text" placeholder="请输入个人介绍" maxlength="30"/>
+				</div>
+				<div class="examination">
+					<span>认证信息：上传身份证明和职称证明</span>
+					<ul class="mui-content-padded" id="examination">
+						<li @click="fileImg(event,1)">
+							<img src="../imgs/picture.png" data-preview-src="" data-preview-group="1" />
+						</li>
+						<li @click="fileImg(event,2)">
+							<img src="../imgs/picture.png" data-preview-src="" data-preview-group="1" />
+						</li>
+						<li @click="fileImg(event,3)">
+							<img src="../imgs/picture.png" data-preview-src="" data-preview-group="1" />
+						</li>
+					</ul>
+				</div>
+				<div class="logobtn" style="padding: 20px;">
+					<button @click="submitinfo()" id="queren">确认</button>
+				</div>
+			</div>
+			<input class="hide" type="file" name="" id="file2" @change="examination(event)" style="display: none;" />
+			<div @click="determine(event)" class="checkbox-box">
+				<div class="checkbox-service">
+					<div class="mui-card">
+						<form class="mui-input-group">
+							<template v-if="servList!='' && servList.length > 0" v-for="(list, index) in servList">
+								<div @click="selectCheck(event, list.text, list.value)" class="mui-input-row mui-checkbox">
+									<label>{{list.text}}</label>
+									<input name="checkbox1" value="Item 3" type="checkbox">
+								</div>
+							</template>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="selectarea_box">
+				<div class="selectarea">
+					<div class="area-title">
+						<span>
+							请选择您所服务的地址范围
+						</span>
+					</div>
+					<p>
+						<span>省</span>
+						<span>市</span>
+						<span>区</span>
+						<span>范围</span>
+					</p>
+					<div>
+						<select @change="selectArea(event,01)">
+							<template v-if="province != null" v-for="(list, index) in province">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+					</div>
+					<div>
+						<select @change="selectArea(event,02)">
+							<template v-if="citys != null" v-for="(list, index) in citys">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+
+					</div>
+					<div>
+						<select @change="selectArea(event,03)">
+							<template v-if="area != null" v-for="(list, index) in area">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+					</div>
+					<div>
+						<select @change="selectArea(event,04)">
+							<template v-for="(list,index) in scope">
+								<option :value="list.code">{{list.name}}</option>
+							</template>
+						</select>
+					</div>
+					<button class="selectarea-btn">确定</button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/adsss/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../js/app/common.js"></script>
+		<script type="text/javascript" src="../js/app/app.js"></script>
+		<script type="text/javascript" src="../js/lib/vue/vue.min.js"></script>
+		<script type="text/javascript" src="../js/app/html/authentication.js"></script>
+		<script type="text/javascript" src="../js/app/regex.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			//			$("#queren")[0].addEventListener("tap",function(){
+			//				window.location.href='index.html';
+			//			});
+			//触发上传
+			var nuber;
+			$("#examination").on("click", "img", function() {
+				$("#file2").click();
+				var index = $(this);
+				nuber = index;
+			});
+		</script>
+	</body>
+
+</html>
